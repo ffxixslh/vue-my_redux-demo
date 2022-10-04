@@ -1,0 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  margin: 1rem;
+  text-align: left;
+  font-size: 1.5rem;
+}
