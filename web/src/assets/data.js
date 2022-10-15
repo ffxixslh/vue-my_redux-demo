@@ -1,6 +1,7 @@
 import getData from "@/utils/request";
 
-let data = await getData("/api/list");
-export const length = data.data.length;
+let data = await getData("/api/users");
 
-export const tableData = data.data;
+export const length = data.length;
+
+export const tableData = data;

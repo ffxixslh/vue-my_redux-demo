@@ -1,7 +1,7 @@
 <template>
   <div class="index-container">
     <h1>主页</h1>
-    <el-table :data="tableData" :key="tableData.length">
+    <el-table :data="typeof tableData === 'object' ? tableData : undefined" :key="tableData.length">
       <el-table-column prop="id" label="工号" width="80">
         <template #default="scope">
           {{ scope.row.id }}
