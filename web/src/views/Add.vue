@@ -36,9 +36,7 @@ import { useRouter } from "vue-router";
 import { ElMessage } from "element-plus";
 
 const router = useRouter();
-let nextId = 5;
 const form = reactive({
-  id: ++nextId,
   name: "",
   address: "",
   birthday: "",

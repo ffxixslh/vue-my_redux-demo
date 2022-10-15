@@ -87,7 +87,7 @@ const handleRouterPush = (pageName) => {
   right: 20px;
 }
 .main-view {
-  padding: 1rem;
+  padding: 0 1rem;
   overflow: hidden;
 }
 </style>

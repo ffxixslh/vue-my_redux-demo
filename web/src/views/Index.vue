@@ -8,8 +8,8 @@
         </template>
       </el-table-column>
       <el-table-column prop="name" label="姓名" width="120" />
-      <el-table-column prop="birthday" label="生日" width="160" />
-      <el-table-column prop="address" label="住址" width="400" />
+      <el-table-column prop="birthday" label="生日" width="200" />
+      <el-table-column prop="address" label="住址" width="280" />
       <el-table-column prop="actions" label="操作" width="160" fixed="right">
         <template #default="scope">
           <el-button type="primary" @click="handleSelect(scope.row)"

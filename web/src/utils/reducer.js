@@ -1,10 +1,17 @@
-import { tableData } from "../assets/data";
+import { tableData, length } from "../assets/data";
+let nextId = length;
 
 export const reducer = (state = tableData, action) => {
   switch (action.type) {
     case "added": {
       console.log("added");
-      return [...state, action.form];
+      return [
+        ...state,
+        {
+          ...action.form,
+          id: ++nextId,
+        },
+      ];
     }
     case "deleted": {
       console.log("deleted");
