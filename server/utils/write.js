@@ -17,7 +17,7 @@ const saveJSONAsTXT = () => {
       console.log("err:", err);
     } else {
       let stringFile = convertJSON2String(data);
-      saveStringAsTXT(stringFile)
+      saveStringAsTXT(stringFile);
     }
   });
 };
@@ -32,13 +32,24 @@ const convertJSON2String = (jsonFile) => {
 };
 
 const saveStringAsTXT = (stringFile) => {
-  fs.writeFile('data.txt', stringFile, (err) => {
+  fs.writeFile("data.txt", stringFile, (err) => {
     if (err) {
       console.log("error occurs");
     } else {
       console.log("write to data.txt:\n", stringFile);
     }
-  })
-}
+  });
+};
 
-saveJSONAsTXT()
+//   Mock.mock({
+//     "data|10": [
+//       {
+//         "id|+1": 1,
+//         name: "@cname",
+//         birthday: "@datetime", //日期先忽略
+//         address: "@county(true)",
+//       },
+//     ],
+//   })
+
+saveJSONAsTXT();

@@ -33,16 +33,17 @@
 import { onUpdated, reactive } from "vue";
 import store from "@/utils/store";
 import { useRouter } from "vue-router";
-import { ElMessage } from "element-plus";
+import { ElMessage, ElMessageBox } from "element-plus";
+import getData from "@/utils/request";
 
 const router = useRouter();
 const form = reactive({
-  name: "",
-  address: "",
-  birthday: "",
+  name: "阿斯顿",
+  address: "安徽省 蚌埠市 怀远县",
+  birthday: "2001-01-01 00:00:00.000000",
 });
 
-const onSubmit = () => {
+const onSubmit = async () => {
   console.log("submit!");
   for (const key in form) {
     if (!form[key]) {
@@ -52,7 +53,29 @@ const onSubmit = () => {
   }
   store.dispatch({ type: "added", form: form });
   store.subscribe(() => console.log(store.getState()));
-  router.push("/index");
+  let result = await getData({
+    method: "POST",
+    url: `/api/users/add`,
+    data: form,
+  });
+
+  if (result.status === "200") {
+    console.log("result", result);
+    ElMessageBox.confirm("添加成功，是否返回主页？", "添加", {
+      confirmButtonText: "确定",
+      cancelButtonText: "取消",
+      type: "success",
+    })
+      .then(() => {
+        router.push("/index");
+      })
+      .catch(() => {
+        ElMessage({
+          type: "info",
+          message: "取消操作",
+        });
+      });
+  }
 };
 
 onUpdated(() => {

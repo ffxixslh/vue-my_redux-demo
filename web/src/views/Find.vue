@@ -30,6 +30,7 @@ import store from "@/utils/store";
 import { onMounted, ref } from "vue";
 import { ElMessage } from "element-plus";
 import ChangeDialog from "@/components/ChangeDialog.vue";
+import getData from "@/utils/request";
 
 // 处理搜索结果显示
 const state = ref("");
@@ -63,13 +64,23 @@ const handleSelect = (item) => {
   dialogFormVisible.value = true;
 };
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   store.dispatch({
     type: "changed",
     form,
   });
+
+  let result = await getData({
+    method: "PUT",
+    url: `/api/users/${form.value.id}`,
+    data: form.value,
+  });
+
+  if (result.status === "200") {
+    console.log("result", result);
+    ElMessage({ type: "success", message: "修改成功" });
+  }
   dialogFormVisible.value = false;
-  ElMessage({ type: "success", message: "修改成功" });
 };
 
 onMounted(() => {
